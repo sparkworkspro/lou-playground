@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proposal · Fishwife Tinned Lobster Launch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app" id="app">
+      <header class="chrome" id="chrome">
+        <div class="chrome__left">
+          <button class="chrome__back" aria-label="Back to proposals">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <nav class="chrome__breadcrumb" aria-label="Breadcrumb">
+            <span class="chrome__crumb chrome__crumb--muted">Proposals</span>
+            <span class="chrome__sep">/</span>
+            <span class="chrome__crumb">Fishwife · Tinned Lobster Launch</span>
+          </nav>
+          <span class="chrome__status">
+            <span class="chrome__dot" aria-hidden="true"></span>
+            Draft
+          </span>
+        </div>
+        <div class="chrome__right">
+          <div class="segmented" role="tablist" aria-label="View mode">
+            <button class="segmented__btn segmented__btn--active" data-mode="edit" role="tab" aria-selected="true">Edit</button>
+            <button class="segmented__btn" data-mode="preview" role="tab" aria-selected="false">Preview</button>
+          </div>
+          <button class="btn btn--primary" id="sendBtn">
+            Send
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="workspace" data-helper-open="false">
+        <aside class="rail" id="rail" aria-label="Section navigation">
+          <!-- rendered by main.js -->
+        </aside>
+
+        <aside class="helper-panel" id="helperPanel" aria-label="Timeline helper" hidden>
+          <!-- rendered by main.js when opened -->
+        </aside>
+
+        <main class="canvas brand-scope" id="canvas">
+          <!-- rendered by main.js -->
+        </main>
+      </div>
+    </div>
+
+    <!-- Send confirm sheet -->
+    <div class="sheet" id="sendSheet" hidden>
+      <div class="sheet__backdrop" data-dismiss></div>
+      <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+        <button class="sheet__close" data-dismiss aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <h2 class="sheet__title" id="sheetTitle">Ready to share</h2>
+        <p class="sheet__desc">Nothing has been sent yet. Pick how you'd like to hand this off to LobJeff.</p>
+
+        <div class="sheet__options">
+          <button class="sheet__option" data-option="link">
+            <div class="sheet__option-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="sheet__option-body">
+              <div class="sheet__option-title">Copy shareable link</div>
+              <div class="sheet__option-sub">fishwife.salter.studio/proposals/lobster-9k2b</div>
+            </div>
+            <div class="sheet__option-action" id="copyState">Copy</div>
+          </button>
+
+          <button class="sheet__option" data-option="pdf">
+            <div class="sheet__option-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14 3v6h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="sheet__option-body">
+              <div class="sheet__option-title">Download PDF</div>
+              <div class="sheet__option-sub">Fishwife-Tinned-Lobster (Salter Studio).pdf</div>
+            </div>
+            <div class="sheet__option-action">Download</div>
+          </button>
+
+          <button class="sheet__option sheet__option--email" data-option="email" type="button" aria-expanded="false" aria-controls="emailPanel">
+            <div class="sheet__option-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5v-11z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M3.5 7l8.5 6 8.5-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="sheet__option-body">
+              <div class="sheet__option-title">Suggested email</div>
+              <div class="sheet__option-sub" data-email-preview>Draft to LobJeff. Review, cycle drafts, then copy or open in mail.</div>
+            </div>
+            <div class="sheet__option-action" data-email-toggle-label>Review</div>
+          </button>
+
+          <div class="sheet__email-panel" id="emailPanel" data-email-panel hidden>
+            <div class="sheet__email-head">
+              <div class="sheet__email-meta">
+                <span class="sheet__email-label">To</span>
+                <span class="sheet__email-value" data-email-to></span>
+              </div>
+              <div class="sheet__email-meta">
+                <span class="sheet__email-label">Subject</span>
+                <span class="sheet__email-value" data-email-subject></span>
+              </div>
+            </div>
+            <pre class="sheet__email-body" data-email-body></pre>
+            <div class="sheet__email-actions">
+              <div class="sheet__email-cycle" role="group" aria-label="Cycle email drafts">
+                <button type="button" class="sheet__email-nav" data-email-prev aria-label="Previous draft">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <span class="sheet__email-counter" data-email-counter>1 / 3</span>
+                <button type="button" class="sheet__email-nav" data-email-next aria-label="Next draft">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+              <div class="sheet__email-primary">
+                <a class="sheet__email-mailto" data-email-mailto href="#" target="_blank" rel="noopener noreferrer">Open in mail app</a>
+                <button type="button" class="sheet__email-copy" data-email-copy>Copy email</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sheet__foot">
+          <span class="sheet__foot-note">You'll still need to share this yourself. We never auto-send.</span>
+        </div>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
