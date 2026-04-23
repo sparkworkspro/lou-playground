@@ -1103,6 +1103,25 @@ function renderTerms() {
                   </div>
                 </div>`;
             }
+            if (row.key === "Full terms") {
+              const body = t.fullTermsBody || row.body || "";
+              const startCollapsed = !!t.fullTermsCollapsed;
+              return `
+              <div class="terms__row terms__row--full" id="terms-full-row">
+                <div class="terms__key">
+                  Full terms
+                  <button type="button" class="terms__collapse-btn" data-fullterms-canvas-toggle aria-expanded="${!startCollapsed}">
+                    <span class="terms__collapse-label">${startCollapsed ? "Show" : "Hide"}</span>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+                <div class="terms__value terms__full-body${startCollapsed ? " terms__full-body--collapsed" : ""}" data-fullterms-canvas-body>
+                  <div class="terms__full-text">${body.replace(/\n/g, "<br>")}</div>
+                </div>
+              </div>`;
+            }
             return `
               <div class="terms__row">
                 <div class="terms__key">${row.key}</div>
@@ -1342,7 +1361,7 @@ function renderFormScope() {
         ${finput(`type="text" value="${esc(weeksEntry ? weeksEntry.num : "8")}" data-fld="scope.totalDuration" style="width:80px"`)}
         <span class="finline__unit">weeks</span>
       </div>`)
-    ) +
+    , { blue: true }) +
     fcard("Stages", renderStagesForm(s.milestones)) +
     fcard("Proposed dates",
       frow("Sign by",   finput(`type="text" value="${esc(s.dates.signBy)}" data-fld="scope.dates.signBy"`)) +
@@ -2953,9 +2972,18 @@ function wireAffordances() {
 
   document.addEventListener("click", (e) => {
     const editing = $(".ai-block[data-editing='true']");
-    if (!editing) return;
-    if (editing.contains(e.target)) return;
-    exitEdit(editing);
+    if (editing && !editing.contains(e.target)) exitEdit(editing);
+
+    // Full terms canvas collapse toggle
+    if (e.target.closest("[data-fullterms-canvas-toggle]")) {
+      const btn  = e.target.closest("[data-fullterms-canvas-toggle]");
+      const body = document.querySelector("[data-fullterms-canvas-body]");
+      const label = btn.querySelector(".terms__collapse-label");
+      if (!body) return;
+      const isCollapsed = body.classList.toggle("terms__full-body--collapsed");
+      btn.setAttribute("aria-expanded", String(!isCollapsed));
+      if (label) label.textContent = isCollapsed ? "Show" : "Hide";
+    }
   });
 }
 

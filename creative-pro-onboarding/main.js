@@ -522,7 +522,7 @@ const state = {
   answers: {
     // Brand basics
     workType: "solo",
-    name: "",
+    name: "Boiling Pot Studio",
     role: "",
     country: "AU",
     city: "Melbourne",
@@ -1293,7 +1293,6 @@ function renderFontSection(a) {
             <div class="font-pairing__mock-heading"
                  style="font-family:${p.headingFont};font-weight:${p.headingWeight};font-style:${p.headingStyle}">Title</div>
             <div class="font-pairing__mock-body">Here's what the body copy looks like at reading size. Clear and easy to scan.</div>
-            <div class="font-pairing__mock-btn">Accept proposal</div>
           </div>
           <div class="font-pairing__foot">
             <div class="font-pairing__label">${p.label}</div>

@@ -2197,6 +2197,64 @@ body {
   color: var(--brand-accent);
 }
 
+/* Full terms collapsible row */
+.terms__row--full .terms__key {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.terms__collapse-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-style: normal;
+  color: var(--brand-muted);
+  background: none;
+  border: 1px solid var(--brand-rule);
+  border-radius: 100px;
+  padding: 0.1875rem 0.625rem 0.1875rem 0.5rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.terms__collapse-btn:hover {
+  color: var(--brand-ink);
+  border-color: var(--brand-muted);
+}
+
+.terms__collapse-btn svg {
+  transition: transform 0.2s;
+}
+
+.terms__collapse-btn[aria-expanded="false"] svg {
+  transform: rotate(-90deg);
+}
+
+.terms__full-body {
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.25s ease;
+  max-height: 2000px;
+  opacity: 1;
+}
+
+.terms__full-body--collapsed {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.terms__full-text {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--brand-ink-soft);
+  white-space: pre-wrap;
+}
+
 .payment-schedule {
   list-style: none;
   display: flex;

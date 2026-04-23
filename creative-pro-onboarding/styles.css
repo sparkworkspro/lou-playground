@@ -796,10 +796,10 @@ select.input {
 }
 
 .font-pairing__mock-heading {
-  font-size: 1.5rem;
-  line-height: 1.15;
+  font-size: 2rem;
+  line-height: 1.1;
   color: #1a1816;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 .font-pairing__mock-label {
