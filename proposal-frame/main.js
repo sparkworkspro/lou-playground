@@ -1,6 +1,6 @@
 // ═══════════════════════════════════════════════════════════════
 //  Proposal Frame: editor surface for a creative pro's draft
-//  Brand scope: Salter Studio (solo packaging designer) → Fishwife
+//  Brand scope: Boiling Pot (Jake Simmerman, brand & packaging designer) → Fishwife
 //
 //  Losing is a first-class state. When archive-with-reason lands,
 //  it threads through the chrome status + Send sheet from here.
@@ -11,15 +11,15 @@
 // through them; the cycle index is kept in variantIdx[] by field path.
 const PROPOSAL = {
   brand: {
-    studio: "Salter Studio",
-    mark: "S",
-    principal: "Annika Salter",
+    studio: "Boiling Pot",
+    mark: "B",
+    principal: "Jake Simmerman",
     role: "Brand & packaging designer",
     city: "Melbourne",
     links: [
-      { kind: "web", label: "salterstudio.com", url: "https://salterstudio.com" },
-      { kind: "instagram", label: "@salter.studio", url: "https://instagram.com/salter.studio" },
-      { kind: "linkedin", label: "Annika Salter", url: "https://linkedin.com/in/annikasalter" },
+      { kind: "web", label: "boilingpot.studio", url: "https://boilingpot.studio" },
+      { kind: "instagram", label: "@boilingpotstudio", url: "https://instagram.com/boilingpotstudio" },
+      { kind: "linkedin", label: "Jake Simmerman", url: "https://linkedin.com/in/jakesimmerman" },
     ],
   },
   client: {
@@ -94,6 +94,7 @@ const PROPOSAL = {
     },
     milestones: [
       {
+        eyebrow: "",
         name: "Research & concept",
         timing: "Week 1–2",
         deliverables: [
@@ -102,8 +103,10 @@ const PROPOSAL = {
           "Illustration and typography exploration",
           "Recommendation with rationale",
         ],
+        outcomesHidden: false,
       },
       {
+        eyebrow: "",
         name: "Design",
         timing: "Week 3–4",
         deliverables: [
@@ -111,8 +114,10 @@ const PROPOSAL = {
           "Tin label, outer sleeve, and case packaging",
           "First campaign visuals drafted from the same system",
         ],
+        outcomesHidden: false,
       },
       {
+        eyebrow: "",
         name: "Final artwork",
         timing: "Week 5",
         deliverables: [
@@ -120,8 +125,10 @@ const PROPOSAL = {
           "Dielines and barcode checked",
           "Proofs reviewed, colour signed off in studio",
         ],
+        outcomesHidden: false,
       },
       {
+        eyebrow: "",
         name: "Campaign collateral",
         timing: "Week 6–7",
         deliverables: [
@@ -129,16 +136,23 @@ const PROPOSAL = {
           "POS cards and shelf talkers",
           "Wholesale one-pager",
         ],
+        outcomesHidden: false,
       },
       {
+        eyebrow: "",
         name: "Delivery",
         timing: "Week 8",
         deliverables: [
           "Source files, print specs, working brand sheet",
           "30-day post-launch design support",
         ],
+        outcomesHidden: false,
       },
     ],
+    hourlyRate: 160,
+    weeklyCapacity: 30,
+    callDurationMins: 60,
+    feedbackBufferDays: 3,
     lineItems: [
       { label: "Packaging design: tin label + outer", qty: 1, rate: 6800 },
       { label: "Final print artwork: plate-ready", qty: 1, rate: 3200 },
@@ -294,6 +308,8 @@ const PROPOSAL = {
         outcome: "New packaging lifted shelf pick-up by 22% at David Jones Food Hall within six weeks. The system now runs across the whole line.",
         thumbClass: "case__thumb--a",
         thumbSrc: "",
+        thumbMode: "gradient",
+        url: "",
       },
       {
         client: "Perennia",
@@ -301,6 +317,8 @@ const PROPOSAL = {
         outcome: "Design that took Perennia from curious newcomer to a staple on David Chang's pantry list. The Strategist ran the tin in their pantry roundup the month of launch.",
         thumbClass: "case__thumb--b",
         thumbSrc: "",
+        thumbMode: "gradient",
+        url: "",
       },
       {
         client: "Maple & Brine",
@@ -308,11 +326,18 @@ const PROPOSAL = {
         outcome: "One illustration system, four SKUs, zero re-draws. Still the pack they hand every new collaborator when the line extends.",
         thumbClass: "case__thumb--c",
         thumbSrc: "",
+        thumbMode: "gradient",
+        url: "",
       },
     ],
   },
 
   terms: {
+    ownershipFull: true,
+    extraRevisionRate: 160,
+    fullTermsExpanded: false,
+    fullTermsCollapsed: false,
+    fullTermsBody: "",
     rows: [
       {
         key: "Payment",
@@ -337,7 +362,7 @@ const PROPOSAL = {
       },
       {
         key: "Full terms",
-        body: `You can see my full terms and conditions <a href="https://salterstudio.com/terms" target="_blank" rel="noopener noreferrer">here</a>.`,
+        body: `You can see my full terms and conditions <a href="https://boilingpot.studio/terms" target="_blank" rel="noopener noreferrer">here</a>.`,
       },
     ],
     cta: {
@@ -345,12 +370,12 @@ const PROPOSAL = {
       sub: "Accept below to secure your spot.",
       action: "Accept proposal",
     },
-    sign: "Annika",
+    sign: "Jake",
   },
 
   send: {
     to: { name: "LobJeff", email: "lobjeff@fishwife.com" },
-    link: "https://fishwife.salter.studio/proposals/lobster-9k2b",
+    link: "https://fishwife.boilingpot.studio/proposals/lobster-9k2b",
     email: {
       variants: [
         {
@@ -363,37 +388,88 @@ Read it start to finish in about ten minutes, or skim the Scope section if you'r
 
 Any questions, I'm here.
 
-Annika
-Salter Studio`,
+Jake
+Boiling Pot`,
         },
         {
-          subject: "Fishwife × Salter Studio: lobster launch proposal",
+          subject: "Fishwife × Boiling Pot: lobster launch proposal",
           body: `LobJeff,
 
 Proposal for the tinned lobster, linked below. Eight weeks, five deliverables, priced line-by-line.
 
 Let me know if anything lands wrong and we'll reshape it together.
 
-Annika`,
+Jake`,
         },
         {
-          subject: "Lobster launch: proposal from Salter Studio",
+          subject: "Lobster launch: proposal from Boiling Pot",
           body: `Hi LobJeff,
 
 Drafted the proposal for the Tinned Lobster launch. The Scope section is the one to read first: it lays out the eight-week build and what you'd get at each step.
 
 Offer holds until 15 May. Happy to jump on a call if that's easier.
 
-Annika`,
+Jake`,
         },
       ],
     },
   },
 };
 
+// ── Studio case study library (from the creative's profile) ───
+// In production this would come from the user's account. Here it's a
+// representative set used for the prototype picker.
+const STUDIO_CASE_LIBRARY = [
+  {
+    id: "lib-1",
+    client: "Brooke's Granola",
+    project: "SS24 range relaunch",
+    outcome: "Redesigned packaging lifted shelf presence and increased range velocity by 34% in the first quarter.",
+    thumbMode: "gradient",
+    thumbSrc: "",
+    url: "https://brookesgranola.com.au",
+  },
+  {
+    id: "lib-2",
+    client: "Remi Studio",
+    project: "Brand identity system",
+    outcome: "Full identity for a Melbourne-based interior design practice — wordmark, colour system, and stationery suite.",
+    thumbMode: "gradient",
+    thumbSrc: "",
+    url: "",
+  },
+  {
+    id: "lib-3",
+    client: "Fieldday",
+    project: "Annual report 2023",
+    outcome: "120-page report designed and print-managed end-to-end, delivered two weeks ahead of AGM.",
+    thumbMode: "gradient",
+    thumbSrc: "",
+    url: "https://fieldday.com.au",
+  },
+  {
+    id: "lib-4",
+    client: "Mote",
+    project: "Packaging & brand system",
+    outcome: "Shelf-ready packaging for a new sparkling water brand targeting independent grocery.",
+    thumbMode: "gradient",
+    thumbSrc: "",
+    url: "",
+  },
+  {
+    id: "lib-5",
+    client: "Aesop",
+    project: "Campaign collateral",
+    outcome: "In-store and digital campaign assets for Q4 gifting season across APAC.",
+    thumbMode: "gradient",
+    thumbSrc: "",
+    url: "",
+  },
+];
+
 // ── State ─────────────────────────────────────────────────────
 const state = {
-  mode: "edit", // "edit" | "preview"
+  mode: "fields", // "fields" | "edit" | "preview"
   variantIdx: {}, // path -> current variant index
   activeSection: "cover",
   selectedAddOns: new Set(), // add-on ids the client has toggled on
@@ -403,6 +479,7 @@ const state = {
   extras: [], // creative-pro-added extras, priced-in to core scope
   extraUid: 0, // incrementing id for extra rows
   selectedTier: null, // id of the pricing tier the client picks, if any
+  caseLibraryOpen: false, // whether the library picker is expanded
 };
 
 // Small eye icons used by the per-line hide toggle.
@@ -629,9 +706,10 @@ function renderScope() {
       <div class="timeline">
         ${s.milestones
           .map(
-            (m) => `
+            (m, i) => `
           <div class="milestone">
             <div class="milestone__head">
+              <span class="milestone__eyebrow">${m.eyebrow || `Stage ${i + 1}`}</span>
               <h3 class="milestone__name">${m.name}</h3>
               <span class="milestone__timing">${m.timing}</span>
             </div>
@@ -1083,11 +1161,1034 @@ function renderRail() {
       )
       .join("")}
     <div class="rail__foot">
+      ${state.mode === "fields" ? `
+      <button type="button" class="rail__estimate-btn" id="railEstimateTrigger">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+          <path d="M9 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M18 2l4 4-9 9H9v-4l9-9z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Estimate
+      </button>` : ""}
       <span class="rail__status" aria-live="polite">
         <span class="rail__status-dot" aria-hidden="true"></span>
         <span data-save-status>Draft · saved just now</span>
       </span>
     </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  FORM VIEW · simple field-editing mode
+//  Shows all proposal data as clearly-labelled form inputs.
+//  Syncs bidirectionally with PROPOSAL; canvas re-renders on idle.
+// ═══════════════════════════════════════════════════════════════
+
+// ── Escape helper ─────────────────────────────────────────────
+function esc(str) {
+  return String(str == null ? "" : str)
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+// ── Form primitives ───────────────────────────────────────────
+
+function fsec(id, eyebrow, heading, body) {
+  return `<section class="fs" id="form-section-${id}" data-form-section="${id}">
+    <div class="fs__head">
+      <div class="fs__ey">${eyebrow}</div>
+      <h2 class="fs__heading">${heading}</h2>
+    </div>
+    <div class="fs__body">${body}</div>
+  </section>`;
+}
+
+function fcard(title, body, opts = {}) {
+  return `<div class="fcard${opts.blue ? " fcard--blue" : ""}">
+    ${title ? `<div class="fcard__title">${title}</div>` : ""}
+    ${body}
+  </div>`;
+}
+
+function frow(label, control, opts = {}) {
+  return `<div class="frow">
+    <div class="frow__label">${label}${opts.sub ? `<span class="frow__sub">${opts.sub}</span>` : ""}</div>
+    <div class="frow__control">${control}${opts.hint ? `<span class="frow__hint">${opts.hint}</span>` : ""}</div>
+  </div>`;
+}
+
+function finput(attrs = "") {
+  return `<input class="finput" ${attrs} />`;
+}
+
+function fhinput(attrs = "") {
+  return `<input class="finput finput--heading" ${attrs} />`;
+}
+
+function ftextarea(attrs = "", value = "") {
+  return `<textarea class="finput finput--ta" ${attrs}>${value}</textarea>`;
+}
+
+// ── Form sections ─────────────────────────────────────────────
+
+function renderFormCover() {
+  const { client, brand, project } = PROPOSAL;
+  return fsec("cover", "Cover", "Cover",
+    fcard("For",
+      frow("Name", finput(`type="text" value="${esc(client.contact)}" data-fld="client.contact" placeholder="Client name"`)) +
+      frow("Brand", finput(`type="text" value="${esc(client.name)}" data-fld="client.name" placeholder="Brand or company"`))
+    ) +
+    fcard("From",
+      frow("Name", finput(`type="text" value="${esc(brand.principal)}" data-fld="brand.principal"`)) +
+      frow("Studio", finput(`type="text" value="${esc(brand.studio)}" data-fld="brand.studio"`)) +
+      frow("Position", finput(`type="text" value="${esc(brand.role)}" data-fld="brand.role"`))
+    ) +
+    fcard("",
+      frow("Valid until", finput(`type="text" value="${esc(project.validUntil)}" data-fld="project.validUntil" placeholder="e.g. 15 May 2026"`)) +
+      frow("Reference", `<div class="frow__combo">
+        ${finput(`type="text" value="${esc(project.reference)}" data-fld="project.reference" placeholder="e.g. SS-2026-047"`)}
+        <button type="button" class="frow__eye" data-ref-toggle
+                title="${state.hiddenBlocks.has("reference") ? "Show" : "Hide"} on proposal"
+                aria-label="${state.hiddenBlocks.has("reference") ? "Show" : "Hide"} reference on proposal">
+          ${state.hiddenBlocks.has("reference") ? EYE_OFF_SVG : EYE_OPEN_SVG}
+        </button>
+      </div>`)
+    )
+  );
+}
+
+function renderFormOverview() {
+  const { project, overview } = PROPOSAL;
+  return fsec("overview", "01 · Overview", "Overview",
+    fcard("",
+      frow("Proposal title", finput(`type="text" value="${esc(project.title)}" data-fld="project.title"`)) +
+      frow("Subtitle", finput(`type="text" value="${esc(project.titleAccent)}" data-fld="project.titleAccent" placeholder="Accent word (shown in italics on cover)"`)) +
+      frow("Tagline", ftextarea(`data-fld="project.tagline" rows="2" placeholder="One-line project description"`, esc(project.tagline)))
+    ) +
+    fcard("Goals", renderGoalRows(overview.goals)) +
+    fcard("Approach",
+      frow("Label", fhinput(`type="text" value="${esc(overview.differentiator.label)}" data-fld="overview.differentiator.label" placeholder="How I'll approach it"`)) +
+      renderApproachPoints(overview.differentiator)
+    )
+  );
+}
+
+function renderApproachPoints(differentiator) {
+  const varIdx = state.variantIdx["overview.differentiator"] || 0;
+  const points = differentiator.variants[varIdx] || differentiator.variants[0] || [];
+  return `<div class="flist" data-flist="overview.differentiator.points">
+    ${points.map((p, i) => `
+      <div class="flist__row" data-flist-idx="${i}">
+        <span class="flist__bullet" aria-hidden="true">·</span>
+        <input class="finput" type="text" value="${esc(p)}"
+               data-diff-item data-diff-idx="${i}" />
+        <button type="button" class="flist__remove" data-diff-remove="${i}" aria-label="Remove point">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </div>`).join("")}
+    <button type="button" class="flist__add" data-diff-add>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      Add point
+    </button>
+  </div>`;
+}
+
+function renderGoalRows(goals) {
+  return `<div class="flist" data-flist="overview.goals">
+    ${goals.map((g, i) => `
+      <div class="flist__row" data-flist-idx="${i}">
+        <span class="flist__bullet" aria-hidden="true">·</span>
+        <input class="finput" type="text" value="${esc(g)}"
+               data-flist-item="overview.goals" data-flist-idx="${i}" />
+        <button type="button" class="flist__remove" data-flist-remove="overview.goals:${i}" aria-label="Remove goal">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </div>`).join("")}
+    <button type="button" class="flist__add" data-flist-add="overview.goals">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      Add goal
+    </button>
+  </div>`;
+}
+
+function renderFormScope() {
+  const s = PROPOSAL.scope;
+  const callsEntry  = s.includes.find(i => /calls/i.test(i.label));
+  const revisEntry  = s.includes.find(i => /revision/i.test(i.label));
+  const weeksEntry  = s.includes.find(i => /weeks?$/i.test((i.label || "").trim()));
+
+  return fsec("scope", "02 · Scope", "Scope",
+    fcard("Summary",
+      frow("Calls", `<div class="finline">
+        ${finput(`type="text" value="${esc(callsEntry ? callsEntry.num : "3")}" data-fld="scope.callsHours" style="width:60px"`)}
+        <span class="finline__unit">hrs total</span>
+        <span class="finline__sep">·</span>
+        ${finput(`type="number" value="${s.callDurationMins || 60}" data-fld="scope.callDurationMins" min="15" max="180" style="width:60px"`)}
+        <span class="finline__unit">min / call</span>
+        <span class="finline__sep">·</span>
+        <span class="finline__derived" id="calls-derived">${derivedCallCount(callsEntry ? callsEntry.num : "3", s.callDurationMins || 60)}</span>
+      </div>`) +
+      frow("Revisions", `<div class="finline">
+        ${finput(`type="number" value="${revisEntry ? revisEntry.num : "2"}" data-fld="scope.revisions" min="0" max="10" style="width:60px"`)}
+        <span class="finline__unit">rounds included</span>
+      </div>`) +
+      frow("Feedback buffer", `<div class="finline">
+        ${finput(`type="number" value="${s.feedbackBufferDays || 3}" data-fld="scope.feedbackBufferDays" min="0" max="14" style="width:60px"`)}
+        <span class="finline__unit">days / round</span>
+      </div>`, { hint: "doesn't include weekends" })
+    ) +
+    fcard("Duration",
+      frow("Total", `<div class="finline">
+        ${finput(`type="text" value="${esc(weeksEntry ? weeksEntry.num : "8")}" data-fld="scope.totalDuration" style="width:80px"`)}
+        <span class="finline__unit">weeks</span>
+      </div>`)
+    ) +
+    fcard("Stages", renderStagesForm(s.milestones)) +
+    fcard("Proposed dates",
+      frow("Sign by",   finput(`type="text" value="${esc(s.dates.signBy)}" data-fld="scope.dates.signBy"`)) +
+      frow("To start",  finput(`type="text" value="${esc(s.dates.start)}" data-fld="scope.dates.start"`)) +
+      frow("Finish on", finput(`type="text" value="${esc(s.dates.finish)}" data-fld="scope.dates.finish"`))
+    )
+  );
+}
+
+function renderStagesForm(milestones) {
+  return `<div class="fstages" data-fstages>
+    ${milestones.map((m, i) => renderStageCard(m, i)).join("")}
+    <button type="button" class="flist__add" data-stage-add>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      Add stage
+    </button>
+  </div>`;
+}
+
+function renderStageCard(m, i) {
+  return `<div class="fstage" data-stage-idx="${i}">
+    <div class="fstage__head">
+      <span class="fstage__num">${i + 1}</span>
+      <div class="fstage__fields">
+        <input class="finput finput--sm" type="text" value="${esc(m.eyebrow || "")}"
+               data-stage-field="eyebrow" data-stage-idx="${i}" placeholder="Eyebrow (optional)" />
+        <input class="finput finput--name" type="text" value="${esc(m.name)}"
+               data-stage-field="name" data-stage-idx="${i}" placeholder="Stage name" />
+        <input class="finput finput--week" type="text" value="${esc(m.timing)}"
+               data-stage-field="timing" data-stage-idx="${i}" placeholder="Week 1–2" />
+      </div>
+      <button type="button" class="fstage__remove" data-stage-remove="${i}" aria-label="Remove stage">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="fstage__delivs">
+      ${m.deliverables.map((d, di) => `
+        <div class="fdeliv">
+          <span class="fdeliv__dot" aria-hidden="true">·</span>
+          <input class="finput" type="text" value="${esc(d)}"
+                 data-stage-deliv="${i}" data-deliv-idx="${di}" placeholder="Deliverable" />
+          <button type="button" class="flist__remove" data-deliv-remove="${i}-${di}" aria-label="Remove deliverable">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          </button>
+        </div>`).join("")}
+      <button type="button" class="flist__add flist__add--sm" data-deliv-add="${i}">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Add deliverable
+      </button>
+    </div>
+    <div class="fstage__foot">
+      <label class="fcheck">
+        <input type="checkbox" ${m.outcomesHidden ? "" : "checked"} data-stage-outcomes="${i}" />
+        <span>Show outcomes on proposal</span>
+      </label>
+    </div>
+  </div>`;
+}
+
+function renderFormEstimate() {
+  const s = PROPOSAL.scope;
+  const rate = s.hourlyRate || 160;
+  const hoursTotal = HELPER_STAGES.reduce((sum, st) => sum + st.hours, 0);
+  const lineTotal = s.lineItems.reduce((sum, li) => sum + li.qty * li.rate, 0);
+  const rateTotal = hoursTotal * rate;
+  const diff = lineTotal - rateTotal;
+  const diffClass = diff > 1000 ? " est-row--over" : diff < -1000 ? " est-row--under" : " est-row--flat";
+
+  return fsec("estimate", "MonoDesk · just for you", "Estimate & timeline",
+    `<p class="fs__hint">Sense-check your quote and plan your timeline. Only you see this — not shown to the client.</p>` +
+    fcard("Rate card",
+      frow("Hourly rate", `<div class="finline">
+        <span class="finline__currency">${s.currency}</span>
+        ${finput(`type="number" value="${rate}" data-fld="scope.hourlyRate" min="0" step="5" style="width:80px"`)}
+        <span class="finline__unit">/ hr ex. GST</span>
+      </div>`) +
+      frow("Weekly capacity", `<div class="finline">
+        ${finput(`type="number" value="${s.weeklyCapacity || 30}" data-fld="scope.weeklyCapacity" min="1" max="80" style="width:80px"`)}
+        <span class="finline__unit">hrs / week</span>
+      </div>`),
+      { blue: true }
+    ) +
+    fcard("Hours per stage",
+      `<div class="frows">
+        ${HELPER_STAGES.map(st => frow(
+          st.name,
+          `<div class="finline">
+            ${finput(`type="number" value="${st.hours}" data-est-stage="${st.key}" min="0" style="width:70px"`)}
+            <span class="finline__unit">hrs</span>
+          </div>`,
+          { sub: st.weeks }
+        )).join("")}
+      </div>`
+    ) +
+    `<div class="est-result" data-est-result>
+      <div class="est-row"><span>Total hours</span><strong data-est-hours>${hoursTotal} hrs</strong></div>
+      <div class="est-row"><span>At ${s.currency}${rate}/hr</span><strong data-est-rate-total>${formatMoney(rateTotal, s.currency)}</strong></div>
+      <div class="est-row est-row--sep"><span>Your quoted price</span><strong>${formatMoney(lineTotal, s.currency)}</strong></div>
+      <div class="est-row${diffClass}" data-est-diff-row>
+        <span>Difference</span>
+        <span data-est-diff>${diff >= 0 ? "+" : ""}${formatMoney(diff, s.currency)}</span>
+      </div>
+    </div>` +
+    fcard("Start date",
+      frow("Starts on", finput(`type="text" value="${esc(s.dates.start)}" data-fld="scope.dates.start" data-est-start`)) +
+      frow("Sign by",   finput(`type="text" value="${esc(s.dates.signBy)}" data-fld="scope.dates.signBy"`)) +
+      frow("Estimated finish", `<span class="fcomputed" data-est-finish>${esc(s.dates.finish)}</span>
+        <span class="fcomputed__hint">calculated from start + weeks</span>`)
+    )
+  );
+}
+
+function renderFormPricing() {
+  const formats = [
+    { id: "lineItems", label: "Itemised",  desc: "Line-by-line breakdown" },
+    { id: "tiers",     label: "Packages",  desc: "Good / Better / Best tiers" },
+    { id: "addOns",    label: "Add-ons",   desc: "Optional client-toggleable add-ons" },
+  ];
+
+  return fsec("pricing", "03 · Pricing", "Pricing",
+    fcard("How you're presenting price",
+      `<p class="fcard__desc">Choose which pricing blocks appear on your proposal. You can show multiple.</p>
+      <div class="fprice-opts">
+        ${formats.map(f => `
+          <label class="fprice-opt${!state.hiddenBlocks.has(f.id) ? " fprice-opt--on" : ""}">
+            <input type="checkbox" class="sr-only" data-pricing-toggle="${f.id}" ${!state.hiddenBlocks.has(f.id) ? "checked" : ""} />
+            <span class="fprice-opt__check">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+            </span>
+            <span class="fprice-opt__body">
+              <span class="fprice-opt__label">${f.label}</span>
+              <span class="fprice-opt__desc">${f.desc}</span>
+            </span>
+          </label>`).join("")}
+      </div>`
+    ) +
+    fcard("Extras",
+      `<p class="fcard__desc">Tap to add — these are priced into your core scope total, not shown as separate line items to the client.</p>
+      <div class="fextras-suggestions">
+        ${PROPOSAL.scope.extrasLibrary.map(p => {
+          const active = state.extras.some(e => e.id === p.id);
+          return `<button type="button"
+            class="fextra-chip${active ? " fextra-chip--on" : ""}"
+            data-fextra-preset="${esc(p.id)}"
+            title="${esc(p.desc)}">
+            ${active
+              ? `<svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>`
+              : `<svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`
+            }
+            <span class="fextra-chip__label">${esc(p.name)}</span>
+            <span class="fextra-chip__rate">${PROPOSAL.scope.currency}${formatMoney(p.rate)}</span>
+          </button>`;
+        }).join("")}
+        <button type="button" class="fextra-chip fextra-chip--custom" data-fextras-add>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span class="fextra-chip__label">Custom</span>
+        </button>
+      </div>
+      ${state.extras.length ? `
+      <div class="fextras-active" data-fextras>
+        ${state.extras.map(e => `
+          <div class="fextra-row" data-fextra="${e.uid}">
+            ${finput(`type="text" value="${esc(e.label)}" data-extra-label="${e.uid}" placeholder="Extra name"`)}
+            <div class="finline">
+              <span class="finline__currency">${PROPOSAL.scope.currency}</span>
+              ${finput(`type="number" value="${e.rate}" data-extra-rate="${e.uid}" min="0" style="width:80px"`)}
+            </div>
+            <button type="button" class="flist__remove" data-fextra-remove="${e.uid}" aria-label="Remove extra">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </button>
+          </div>`).join("")}
+      </div>` : ""}`
+    )
+  );
+}
+
+function renderFormAbout() {
+  const a = PROPOSAL.about;
+  const bio = getVariant("about.bio", a.bio.variants);
+
+  return fsec("about", "04 · About", "About",
+    fcard("Intro",
+      frow("Bio", ftextarea(`data-fld="about.bio.active" rows="4" placeholder="A brief intro about you and your studio"`, esc(bio)))
+    ) +
+    fcard("Case studies",
+      `<p class="fcard__desc">Choose from the list below or add new ones. Control what's shown on each.</p>
+      <div class="fcases-list" data-fcases>
+        ${a.caseStudies.map((c, i) => renderCaseCard(c, i)).join("")}
+        <button type="button" class="flist__add" data-case-add>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Add case study
+        </button>
+      </div>`
+    )
+  );
+}
+
+function renderCaseCard(c, i) {
+  const thumbMode = c.thumbMode || (c.thumbSrc ? "image" : "gradient");
+  return `<div class="fcase" data-case-idx="${i}">
+    <div class="fcase__head">
+      <span class="fcase__num">${i + 1}</span>
+      <button type="button" class="fstage__remove" data-case-remove="${i}" aria-label="Remove case study">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="fcase__fields">
+      ${frow("Client",  finput(`type="text" value="${esc(c.client)}" data-fld="about.caseStudies.${i}.client"`))}
+      ${frow("Project", finput(`type="text" value="${esc(c.project)}" data-fld="about.caseStudies.${i}.project"`))}
+      ${frow("Outcome", ftextarea(`data-fld="about.caseStudies.${i}.outcome" rows="2"`, esc(c.outcome)))}
+      ${frow("Link", finput(`type="text" value="${esc(c.url || "")}" data-fld="about.caseStudies.${i}.url" placeholder="https://... (optional)"`), { hint: "optional" })}
+      ${frow("Thumbnail", `<div class="fthumbopts">
+        ${[["image", "Image"], ["logo", "Logo"], ["none", "Nothing"]].map(([mode, label]) => `
+          <label class="fthumbopt${thumbMode === mode ? " fthumbopt--on" : ""}">
+            <input type="radio" class="sr-only" name="thumb${i}" value="${mode}"
+                   ${thumbMode === mode ? "checked" : ""} data-case-thumb="${i}" />
+            <span>${label}</span>
+          </label>`).join("")}
+      </div>
+      ${thumbMode === "image" ? frow("Image", `
+        <label class="fupload${c.thumbSrc ? " fupload--has-image" : ""}">
+          ${c.thumbSrc
+            ? `<img class="fupload__preview" src="${esc(c.thumbSrc)}" alt="Case study thumbnail" />`
+            : `<span class="fupload__empty">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><polyline points="17 8 12 3 7 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="3" x2="12" y2="15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                Upload image
+              </span>`}
+          <input type="file" accept="image/*" class="sr-only" data-case-img="${i}" />
+        </label>
+        ${c.thumbSrc ? `<button type="button" class="fupload__clear" data-case-img-clear="${i}" aria-label="Remove image">Remove</button>` : ""}
+      `) : ""}`)}
+    </div>
+  </div>`;
+}
+
+function renderFormTerms() {
+  const t = PROPOSAL.terms;
+  const payRow       = t.rows.find(r => r.key === "Payment");
+  const revisRow     = t.rows.find(r => r.key === "Revisions");
+  const ownershipRow = t.rows.find(r => r.key === "Ownership");
+  const timelineRow  = t.rows.find(r => r.key === "Timeline");
+  const fullTermsRow = t.rows.find(r => r.key === "Full terms");
+  const ownershipFull = t.ownershipFull !== false;
+  const extraRate    = t.extraRevisionRate || 160;
+
+  return fsec("terms", "05 · Terms", "Terms",
+    fcard("Payment",
+      `<div class="fpayment" data-fpayment>
+        ${payRow && payRow.schedule ? payRow.schedule.map((s, i) => `
+          <div class="fpayment-row" data-pay-idx="${i}">
+            ${finput(`type="text" value="${esc(s.pct)}" data-pay-pct="${i}" style="width:60px" placeholder="%"`)}
+            ${finput(`type="text" value="${esc(s.note)}" data-pay-note="${i}" placeholder="on signature, books research…"`)}
+            <button type="button" class="flist__remove" data-pay-remove="${i}" aria-label="Remove milestone">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </button>
+          </div>`).join("") : ""}
+        <button type="button" class="flist__add flist__add--sm" data-pay-add>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Add milestone
+        </button>
+      </div>`
+    ) +
+    fcard("Revisions",
+      frow("Rate for extra rounds", `<div class="finline">
+        <span class="finline__currency">${PROPOSAL.scope.currency}</span>
+        ${finput(`type="number" value="${extraRate}" data-fld="terms.extraRevisionRate" min="0" step="10" style="width:80px"`)}
+        <span class="finline__unit">/ hr ex. GST</span>
+      </div>`) +
+      frow("Details", ftextarea(`data-fld="terms.revisionsText" rows="2"`, esc(revisRow ? revisRow.body : "")))
+    ) +
+    fcard("Ownership",
+      `<div class="fownership-opts">
+        <label class="fownership-opt${ownershipFull ? " fownership-opt--on" : ""}">
+          <input type="radio" class="sr-only" name="ownership" value="full" ${ownershipFull ? "checked" : ""} data-ownership />
+          <span class="fownership-opt__dot"></span>
+          <div>
+            <span class="fownership-opt__label">Client owns final artwork</span>
+            <span class="fownership-opt__sub">On full payment. Working files stay with you unless bought out.</span>
+          </div>
+        </label>
+        <label class="fownership-opt${!ownershipFull ? " fownership-opt--on" : ""}">
+          <input type="radio" class="sr-only" name="ownership" value="limited" ${!ownershipFull ? "checked" : ""} data-ownership />
+          <span class="fownership-opt__dot"></span>
+          <div>
+            <span class="fownership-opt__label">Limited licence</span>
+            <span class="fownership-opt__sub">Specify usage rights and duration in the details below.</span>
+          </div>
+        </label>
+      </div>` +
+      frow("Details", ftextarea(`data-fld="terms.ownershipText" rows="2"`, esc(ownershipRow ? ownershipRow.body : "")))
+    ) +
+    fcard("Timeline",
+      frow("Details", ftextarea(`data-fld="terms.timelineText" rows="2"`, esc(timelineRow ? timelineRow.body : "")))
+    ) +
+    renderFullTermsCard(fullTermsRow, t)
+  );
+}
+
+function renderFullTermsCard(row, t) {
+  const expanded = !!t.fullTermsExpanded;
+  const body = t.fullTermsBody || "";
+  return `<div class="fcard">
+    <div class="fcard__title-row">
+      <div class="fcard__title">Full terms</div>
+      <button type="button" class="fcard__expand-btn" data-fullterms-toggle aria-expanded="${expanded}">
+        ${expanded ? "Collapse" : "Expand"}
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style="transition:transform 0.15s;transform:rotate(${expanded ? "180" : "0"}deg)"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <p class="fcard__desc">Embed your T&amp;Cs directly in the proposal. Clients can expand or collapse. Not linked externally.</p>
+    ${expanded ? `<div class="fcard__expanded">
+      ${ftextarea(`data-fld="terms.fullTermsBody" rows="10" placeholder="Paste your full terms and conditions here…"`, esc(body))}
+      <label class="fcheck fcheck--mt">
+        <input type="checkbox" ${t.fullTermsCollapsed ? "checked" : ""} data-fld-checkbox="terms.fullTermsCollapsed" />
+        <span>Start collapsed on client view</span>
+      </label>
+    </div>` : ""}
+  </div>`;
+}
+
+// ── Form view master ──────────────────────────────────────────
+
+function renderFormView() {
+  return `<div class="fview" id="fview">
+    ${renderFormCover()}
+    ${renderFormOverview()}
+    ${renderFormScope()}
+    ${renderFormPricing()}
+    ${renderFormAbout()}
+    ${renderFormTerms()}
+    <div class="fview__estimate-trigger">
+      <button type="button" class="fview__estimate-btn" id="estimateTrigger">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <path d="M9 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M18 2l4 4-9 9H9v-4l9-9z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Estimate &amp; timeline
+        <span class="fview__estimate-badge">Just for you</span>
+      </button>
+    </div>
+  </div>`;
+}
+
+function mountEstimatePanel() {
+  const body = $("#estimatePanelBody");
+  if (!body) return;
+  const s = PROPOSAL.scope;
+  const rate = s.hourlyRate || 160;
+  const hoursTotal = HELPER_STAGES.reduce((sum, st) => sum + st.hours, 0);
+  const lineTotal  = s.lineItems.reduce((sum, li) => sum + li.qty * li.rate, 0);
+  const rateTotal  = hoursTotal * rate;
+  const diff       = lineTotal - rateTotal;
+  const diffClass  = diff > 1000 ? " est-row--over" : diff < -1000 ? " est-row--under" : " est-row--flat";
+
+  body.innerHTML =
+    `<p class="estimate-panel__hint">Sense-check your quote and plan your timeline. Only you see this — not shown to the client.</p>` +
+    fcard("Rate card",
+      frow("Hourly rate", `<div class="finline">
+        <span class="finline__currency">${s.currency}</span>
+        ${finput(`type="number" value="${rate}" data-fld="scope.hourlyRate" min="0" step="5" style="width:80px"`)}
+        <span class="finline__unit">/ hr ex. GST</span>
+      </div>`) +
+      frow("Weekly capacity", `<div class="finline">
+        ${finput(`type="number" value="${s.weeklyCapacity || 30}" data-fld="scope.weeklyCapacity" min="1" max="80" style="width:80px"`)}
+        <span class="finline__unit">hrs / week</span>
+      </div>`),
+      { blue: true }
+    ) +
+    fcard("Hours per stage",
+      `<div class="frows">
+        ${HELPER_STAGES.map(st => frow(
+          st.name,
+          `<div class="finline">
+            ${finput(`type="number" value="${st.hours}" data-est-stage="${st.key}" min="0" style="width:70px"`)}
+            <span class="finline__unit">hrs</span>
+          </div>`,
+          { sub: st.weeks }
+        )).join("")}
+      </div>`
+    ) +
+    `<div class="est-result" data-est-result>
+      <div class="est-row"><span>Total hours</span><strong data-est-hours>${hoursTotal} hrs</strong></div>
+      <div class="est-row"><span>At ${s.currency}${rate}/hr</span><strong data-est-rate-total>${formatMoney(rateTotal, s.currency)}</strong></div>
+      <div class="est-row est-row--sep"><span>Your quoted price</span><strong>${formatMoney(lineTotal, s.currency)}</strong></div>
+      <div class="est-row${diffClass}" data-est-diff-row>
+        <span>Difference</span>
+        <span data-est-diff>${diff >= 0 ? "+" : ""}${formatMoney(diff, s.currency)}</span>
+      </div>
+    </div>` +
+    fcard("Start date",
+      frow("Starts on", finput(`type="text" value="${esc(s.dates.start)}" data-fld="scope.dates.start" data-est-start`)) +
+      frow("Sign by",   finput(`type="text" value="${esc(s.dates.signBy)}" data-fld="scope.dates.signBy"`)) +
+      frow("Estimated finish", `<span class="fcomputed" data-est-finish>${esc(s.dates.finish)}</span>
+        <span class="fcomputed__hint">calculated from start + weeks</span>`)
+    );
+}
+
+function openEstimatePanel() {
+  const panel = $("#estimatePanel");
+  if (!panel) return;
+  mountEstimatePanel();
+  panel.hidden = false;
+  requestAnimationFrame(() => panel.classList.add("estimate-panel--open"));
+  document.body.style.overflow = "hidden";
+}
+
+function closeEstimatePanel() {
+  const panel = $("#estimatePanel");
+  if (!panel) return;
+  panel.classList.remove("estimate-panel--open");
+  panel.addEventListener("transitionend", () => { panel.hidden = true; }, { once: true });
+  document.body.style.overflow = "";
+}
+
+function wireEstimatePanel() {
+  document.addEventListener("click", (e) => {
+    if (e.target.closest("#estimateTrigger") || e.target.closest("#railEstimateTrigger")) {
+      openEstimatePanel();
+    }
+    if (e.target.closest("#estimatePanelClose") || e.target.closest("#estimatePanelBackdrop")) {
+      closeEstimatePanel();
+    }
+  });
+  // Wire inputs inside the panel via the existing formCanvas delegation
+  // by attaching a parallel listener on the panel body
+  const panelBody = $("#estimatePanelBody");
+  if (panelBody) {
+    $("#estimatePanel").addEventListener("input", (e) => {
+      const t = e.target;
+      if (t.dataset.fld) {
+        const path = t.dataset.fld;
+        if (path === "scope.hourlyRate")     { PROPOSAL.scope.hourlyRate = Number(t.value) || 160; recalcEstimateDisplay(); scheduleCanvasRefresh(); }
+        if (path === "scope.weeklyCapacity") { PROPOSAL.scope.weeklyCapacity = Number(t.value) || 30; recalcEstimateDisplay(); scheduleCanvasRefresh(); }
+        if (path === "scope.dates.start")    { setFieldValue(path, t.value); recalcEstimateDisplay(); scheduleCanvasRefresh(); }
+        if (path === "scope.dates.signBy")   { setFieldValue(path, t.value); scheduleCanvasRefresh(); }
+      }
+      if (t.dataset.estStage) {
+        const st = HELPER_STAGES.find(s => s.key === t.dataset.estStage);
+        if (st) { st.hours = Number(t.value) || 0; recalcEstimateDisplay(); scheduleCanvasRefresh(); }
+      }
+    });
+  }
+}
+
+function mountFormView() {
+  const fc = $("#formCanvas");
+  if (!fc) return;
+  fc.innerHTML = renderFormView();
+  wireFormView();
+}
+
+// ── Deferred canvas refresh (form edits → canvas) ─────────────
+let _canvasRefreshTimer = null;
+function scheduleCanvasRefresh() {
+  clearTimeout(_canvasRefreshTimer);
+  _canvasRefreshTimer = setTimeout(() => {
+    const canvas = $("#canvas");
+    if (!canvas) return;
+    canvas.innerHTML =
+      renderCover() + renderOverview() + renderScope() +
+      renderPricing() + renderAbout() + renderTerms();
+    wireAffordances(); wireAddOns(); wireLineItems();
+    wireCaseThumbs(); wireExtras(); wireTiers();
+    wireBlockHide(); wireScrollSpy(); tagEditable();
+  }, 600);
+}
+
+// ── Set a dotted-path value on PROPOSAL ──────────────────────
+function setFieldValue(path, value) {
+  const parts = path.split(".");
+  let obj = PROPOSAL;
+  for (let i = 0; i < parts.length - 1; i++) {
+    const key = /^\d+$/.test(parts[i]) ? Number(parts[i]) : parts[i];
+    if (obj[key] == null) return;
+    obj = obj[key];
+  }
+  const last = /^\d+$/.test(parts[parts.length - 1])
+    ? Number(parts[parts.length - 1])
+    : parts[parts.length - 1];
+  obj[last] = value;
+}
+
+function updateIncludesEntry(regex, value) {
+  const entry = PROPOSAL.scope.includes.find(i => regex.test(String(i.label || "")));
+  if (entry) entry.num = String(value);
+}
+
+// ── Re-render a single form section ──────────────────────────
+function rerenderFormSection(id) {
+  const fc = $("#formCanvas");
+  if (!fc) return;
+  const el = fc.querySelector(`#form-section-${id}`);
+  if (!el) return;
+  const renderers = {
+    cover:    renderFormCover,
+    overview: renderFormOverview,
+    scope:    renderFormScope,
+    pricing:  renderFormPricing,
+    about:    renderFormAbout,
+    terms:    renderFormTerms,
+  };
+  if (renderers[id]) el.outerHTML = renderers[id]();
+}
+
+// ── Estimate recalculation ────────────────────────────────────
+function derivedCallCount(hoursStr, durationMins) {
+  const hrs  = parseFloat(hoursStr) || 0;
+  const mins = Number(durationMins) || 60;
+  if (!hrs || !mins) return "—";
+  const n = Math.round((hrs * 60) / mins);
+  return `= ${n} call${n === 1 ? "" : "s"}`;
+}
+
+function recalcCallsDerived() {
+  const el = document.getElementById("calls-derived");
+  if (!el) return;
+  const s = PROPOSAL.scope;
+  const callsEntry = (s.includes || []).find(x => /calls/i.test(x.label));
+  el.textContent = derivedCallCount(callsEntry ? callsEntry.num : "3", s.callDurationMins || 60);
+}
+
+function recalcEstimateDisplay() {
+  const fc = $("#formCanvas");
+  if (!fc) return;
+  const rate = Number(PROPOSAL.scope.hourlyRate) || 160;
+  const hoursTotal = HELPER_STAGES.reduce((n, s) => n + s.hours, 0);
+  const lineTotal  = PROPOSAL.scope.lineItems.reduce((sum, li) => sum + li.qty * li.rate, 0);
+  const rateTotal  = hoursTotal * rate;
+  const diff       = lineTotal - rateTotal;
+
+  const hoursEl   = fc.querySelector("[data-est-hours]");
+  const rateEl    = fc.querySelector("[data-est-rate-total]");
+  const diffEl    = fc.querySelector("[data-est-diff]");
+  const diffRow   = fc.querySelector("[data-est-diff-row]");
+  const finishEl  = fc.querySelector("[data-est-finish]");
+
+  if (hoursEl)  hoursEl.textContent  = `${hoursTotal} hrs`;
+  if (rateEl)   rateEl.textContent   = formatMoney(rateTotal, PROPOSAL.scope.currency);
+  if (diffEl)   diffEl.textContent   = `${diff >= 0 ? "+" : ""}${formatMoney(diff, PROPOSAL.scope.currency)}`;
+  if (diffRow) {
+    diffRow.classList.remove("est-row--over", "est-row--under", "est-row--flat");
+    diffRow.classList.add(diff > 1000 ? "est-row--over" : diff < -1000 ? "est-row--under" : "est-row--flat");
+  }
+
+  // Recalc finish from start + total weeks
+  if (finishEl) {
+    const weeksEntry = PROPOSAL.scope.includes.find(i => /weeks?$/i.test((i.label || "").trim()));
+    const weeks = parseFloat((weeksEntry || {}).num) || 8;
+    const finish = addWeeksToDateStr(PROPOSAL.scope.dates.start, weeks);
+    if (finish) {
+      PROPOSAL.scope.dates.finish = finish;
+      finishEl.textContent = finish;
+      // Also update the finish input in scope section
+      const finishInput = fc.querySelector('[data-fld="scope.dates.finish"]');
+      if (finishInput) finishInput.value = finish;
+    }
+  }
+}
+
+function addWeeksToDateStr(dateStr, weeks) {
+  if (!dateStr) return null;
+  // Strip leading weekday name: "Mon 4 May 2026" → "4 May 2026"
+  const cleaned = dateStr.replace(/^[A-Za-z]+\s+/, "");
+  try {
+    const d = new Date(cleaned);
+    if (isNaN(d)) return null;
+    d.setDate(d.getDate() + Math.round(weeks) * 7);
+    while (d.getDay() !== 1) d.setDate(d.getDate() + 1);
+    return new Intl.DateTimeFormat("en-AU", {
+      weekday: "short", day: "numeric", month: "short", year: "numeric",
+    }).format(d);
+  } catch (_) { return null; }
+}
+
+// ── Wire form view interactions ───────────────────────────────
+function wireFormView() {
+  const fc = $("#formCanvas");
+  if (!fc || fc.dataset.wired === "true") return;
+  fc.dataset.wired = "true";
+
+  // ── input: sync to PROPOSAL ──────────────────────────────────
+  fc.addEventListener("input", (e) => {
+    const t = e.target;
+
+    // Generic dotted-path binding
+    if (t.dataset.fld) {
+      const path = t.dataset.fld;
+
+      if (path === "about.bio.active") {
+        PROPOSAL.about.bio.variants[state.variantIdx["about.bio"] || 0] = t.value;
+      } else if (path === "terms.revisionsText") {
+        const r = PROPOSAL.terms.rows.find(row => row.key === "Revisions");
+        if (r) r.body = t.value;
+      } else if (path === "terms.ownershipText") {
+        const r = PROPOSAL.terms.rows.find(row => row.key === "Ownership");
+        if (r) r.body = t.value;
+      } else if (path === "terms.timelineText") {
+        const r = PROPOSAL.terms.rows.find(row => row.key === "Timeline");
+        if (r) r.body = t.value;
+      } else if (path === "terms.fullTermsBody") {
+        PROPOSAL.terms.fullTermsBody = t.value;
+        const r = PROPOSAL.terms.rows.find(row => row.key === "Full terms");
+        if (r) r.body = t.value;
+      } else {
+        setFieldValue(path, t.value);
+      }
+
+      // Side effects
+      if (path === "scope.callsHours")       { updateIncludesEntry(/calls/i, t.value); recalcCallsDerived(); }
+      if (path === "scope.callDurationMins") { PROPOSAL.scope.callDurationMins = Number(t.value) || 60; recalcCallsDerived(); }
+      if (path === "scope.revisions")        updateIncludesEntry(/revision/i, t.value);
+      if (path === "scope.totalDuration")    updateIncludesEntry(/weeks?$/i, t.value);
+      if (path === "scope.hourlyRate")       { PROPOSAL.scope.hourlyRate = Number(t.value) || 160; recalcEstimateDisplay(); }
+      if (path === "scope.weeklyCapacity")   { PROPOSAL.scope.weeklyCapacity = Number(t.value) || 30; recalcEstimateDisplay(); }
+      if (path === "scope.dates.start")      recalcEstimateDisplay();
+      if (path === "terms.extraRevisionRate") {
+        PROPOSAL.terms.extraRevisionRate = Number(t.value) || 160;
+        const r = PROPOSAL.terms.rows.find(row => row.key === "Revisions");
+        if (r) r.body = r.body.replace(/A\$[\d,]+/g, `A$${t.value}`);
+      }
+
+      scheduleCanvasRefresh();
+    }
+
+    // Stage field (name / timing / eyebrow)
+    if (t.dataset.stageField && t.dataset.stageIdx !== undefined) {
+      PROPOSAL.scope.milestones[Number(t.dataset.stageIdx)][t.dataset.stageField] = t.value;
+      scheduleCanvasRefresh();
+    }
+
+    // Deliverable text
+    if (t.dataset.stageDeliv !== undefined && t.dataset.delivIdx !== undefined) {
+      PROPOSAL.scope.milestones[Number(t.dataset.stageDeliv)].deliverables[Number(t.dataset.delivIdx)] = t.value;
+      scheduleCanvasRefresh();
+    }
+
+    // Goals list items
+    if (t.dataset.flistItem && t.dataset.flistIdx !== undefined) {
+      const arr = resolveField(t.dataset.flistItem);
+      if (Array.isArray(arr)) { arr[Number(t.dataset.flistIdx)] = t.value; scheduleCanvasRefresh(); }
+    }
+
+    // Approach dot-point items
+    if (t.dataset.diffItem !== undefined && t.dataset.diffIdx !== undefined) {
+      const varIdx = state.variantIdx["overview.differentiator"] || 0;
+      PROPOSAL.overview.differentiator.variants[varIdx][Number(t.dataset.diffIdx)] = t.value;
+      scheduleCanvasRefresh();
+    }
+
+    // Payment schedule
+    if (t.dataset.payPct !== undefined) {
+      const r = PROPOSAL.terms.rows.find(row => row.key === "Payment");
+      if (r && r.schedule) { r.schedule[Number(t.dataset.payPct)].pct = t.value; scheduleCanvasRefresh(); }
+    }
+    if (t.dataset.payNote !== undefined) {
+      const r = PROPOSAL.terms.rows.find(row => row.key === "Payment");
+      if (r && r.schedule) { r.schedule[Number(t.dataset.payNote)].note = t.value; scheduleCanvasRefresh(); }
+    }
+
+    // Extras inline
+    if (t.dataset.extraLabel) {
+      const ex = state.extras.find(e => e.uid === Number(t.dataset.extraLabel));
+      if (ex) { ex.label = t.value; scheduleCanvasRefresh(); updateTotals(); }
+    }
+    if (t.dataset.extraRate) {
+      const ex = state.extras.find(e => e.uid === Number(t.dataset.extraRate));
+      if (ex) { ex.rate = Number(t.value) || 0; scheduleCanvasRefresh(); updateTotals(); }
+    }
+
+    // Estimate stage hours
+    if (t.dataset.estStage) {
+      const st = HELPER_STAGES.find(s => s.key === t.dataset.estStage);
+      if (st) { st.hours = Number(t.value) || 0; recalcEstimateDisplay(); scheduleCanvasRefresh(); }
+    }
+  });
+
+  // ── change: checkboxes / radios ───────────────────────────────
+  fc.addEventListener("change", (e) => {
+    const t = e.target;
+
+    if (t.dataset.pricingToggle) {
+      if (t.checked) state.hiddenBlocks.delete(t.dataset.pricingToggle);
+      else state.hiddenBlocks.add(t.dataset.pricingToggle);
+      rerenderFormSection("pricing");
+      scheduleCanvasRefresh();
+    }
+
+    if (t.dataset.stageOutcomes !== undefined) {
+      PROPOSAL.scope.milestones[Number(t.dataset.stageOutcomes)].outcomesHidden = !t.checked;
+      scheduleCanvasRefresh();
+    }
+
+    if (t.dataset.ownership) {
+      PROPOSAL.terms.ownershipFull = t.value === "full";
+      scheduleCanvasRefresh();
+    }
+
+    if (t.dataset.fldCheckbox === "terms.fullTermsCollapsed") {
+      PROPOSAL.terms.fullTermsCollapsed = t.checked;
+      scheduleCanvasRefresh();
+    }
+
+    if (t.dataset.caseThumb !== undefined) {
+      const idx = Number(t.dataset.caseThumb);
+      PROPOSAL.about.caseStudies[idx].thumbMode = t.value;
+      if (t.value !== "image") PROPOSAL.about.caseStudies[idx].thumbSrc = ""; // Image URL only relevant for "image" mode
+      rerenderFormSection("about");
+      scheduleCanvasRefresh();
+    }
+
+    // Case study image upload
+    if (t.dataset.caseImg !== undefined && t.files && t.files[0]) {
+      const idx = Number(t.dataset.caseImg);
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        PROPOSAL.about.caseStudies[idx].thumbSrc = ev.target.result;
+        rerenderFormSection("about");
+        scheduleCanvasRefresh();
+      };
+      reader.readAsDataURL(t.files[0]);
+    }
+  });
+
+  // ── click: add / remove actions ───────────────────────────────
+  fc.addEventListener("click", (e) => {
+    const t = e.target;
+
+    // Goals list
+    const flAdd = t.closest("[data-flist-add]");
+    if (flAdd) {
+      const arr = resolveField(flAdd.dataset.flistAdd);
+      if (Array.isArray(arr)) { arr.push(""); rerenderFormSection("overview"); scheduleCanvasRefresh(); }
+    }
+    const flRemove = t.closest("[data-flist-remove]");
+    if (flRemove) {
+      const [path, idxStr] = flRemove.dataset.flistRemove.split(":");
+      const arr = resolveField(path);
+      if (Array.isArray(arr)) { arr.splice(Number(idxStr), 1); rerenderFormSection("overview"); scheduleCanvasRefresh(); }
+    }
+
+    // Approach dot-points
+    if (t.closest("[data-diff-add]")) {
+      const varIdx = state.variantIdx["overview.differentiator"] || 0;
+      PROPOSAL.overview.differentiator.variants[varIdx].push("");
+      rerenderFormSection("overview"); scheduleCanvasRefresh();
+    }
+    const diffRemove = t.closest("[data-diff-remove]");
+    if (diffRemove) {
+      const varIdx = state.variantIdx["overview.differentiator"] || 0;
+      PROPOSAL.overview.differentiator.variants[varIdx].splice(Number(diffRemove.dataset.diffRemove), 1);
+      rerenderFormSection("overview"); scheduleCanvasRefresh();
+    }
+
+    // Stages
+    if (t.closest("[data-stage-add]")) {
+      PROPOSAL.scope.milestones.push({ eyebrow: "", name: "New stage", timing: "Week X", deliverables: [""], outcomesHidden: false });
+      rerenderFormSection("scope"); scheduleCanvasRefresh();
+    }
+    const stageRemove = t.closest("[data-stage-remove]");
+    if (stageRemove) {
+      PROPOSAL.scope.milestones.splice(Number(stageRemove.dataset.stageRemove), 1);
+      rerenderFormSection("scope"); scheduleCanvasRefresh();
+    }
+
+    // Deliverables
+    const delivAdd = t.closest("[data-deliv-add]");
+    if (delivAdd) {
+      PROPOSAL.scope.milestones[Number(delivAdd.dataset.delivAdd)].deliverables.push("");
+      rerenderFormSection("scope");
+    }
+    const delivRemove = t.closest("[data-deliv-remove]");
+    if (delivRemove) {
+      const [si, di] = delivRemove.dataset.delivRemove.split("-").map(Number);
+      PROPOSAL.scope.milestones[si].deliverables.splice(di, 1);
+      rerenderFormSection("scope"); scheduleCanvasRefresh();
+    }
+
+    // Payment milestones
+    if (t.closest("[data-pay-add]")) {
+      const r = PROPOSAL.terms.rows.find(row => row.key === "Payment");
+      if (r && r.schedule) { r.schedule.push({ pct: "0%", note: "" }); rerenderFormSection("terms"); scheduleCanvasRefresh(); }
+    }
+    const payRemove = t.closest("[data-pay-remove]");
+    if (payRemove) {
+      const r = PROPOSAL.terms.rows.find(row => row.key === "Payment");
+      if (r && r.schedule) { r.schedule.splice(Number(payRemove.dataset.payRemove), 1); rerenderFormSection("terms"); scheduleCanvasRefresh(); }
+    }
+
+    // Case studies
+    if (t.closest("[data-case-add]")) {
+      PROPOSAL.about.caseStudies.push({ client: "", project: "", outcome: "", thumbClass: "case__thumb--a", thumbSrc: "", thumbMode: "gradient", url: "" });
+      rerenderFormSection("about");
+    }
+    const caseRemove = t.closest("[data-case-remove]");
+    if (caseRemove) {
+      PROPOSAL.about.caseStudies.splice(Number(caseRemove.dataset.caseRemove), 1);
+      rerenderFormSection("about"); scheduleCanvasRefresh();
+    }
+
+    const caseImgClear = t.closest("[data-case-img-clear]");
+    if (caseImgClear) {
+      PROPOSAL.about.caseStudies[Number(caseImgClear.dataset.caseImgClear)].thumbSrc = "";
+      rerenderFormSection("about"); scheduleCanvasRefresh();
+    }
+
+    // Full terms toggle
+    if (t.closest("[data-fullterms-toggle]")) {
+      PROPOSAL.terms.fullTermsExpanded = !PROPOSAL.terms.fullTermsExpanded;
+      rerenderFormSection("terms");
+    }
+
+    // Extras — preset chip toggle
+    const presetChip = t.closest("[data-fextra-preset]");
+    if (presetChip) {
+      const id = presetChip.dataset.fextraPreset;
+      const alreadyOn = state.extras.some(e => e.id === id);
+      if (alreadyOn) {
+        state.extras = state.extras.filter(e => e.id !== id);
+      } else {
+        const preset = PROPOSAL.scope.extrasLibrary.find(p => p.id === id);
+        if (preset) state.extras.push({ uid: ++state.extraUid, id: preset.id, label: preset.name, rate: preset.rate });
+      }
+      rerenderFormSection("pricing"); updateTotals(); scheduleCanvasRefresh();
+    }
+
+    // Extras — custom blank row
+    if (t.closest("[data-fextras-add]")) {
+      state.extras.push({ uid: ++state.extraUid, id: "custom", label: "", rate: 0 });
+      rerenderFormSection("pricing"); updateTotals();
+    }
+    const fextraRemove = t.closest("[data-fextra-remove]");
+    if (fextraRemove) {
+      const uid = Number(fextraRemove.dataset.fextraRemove);
+      // also deactivate preset chip if this was a preset
+      const ex = state.extras.find(e => e.uid === uid);
+      state.extras = state.extras.filter(e => e.uid !== uid);
+      rerenderFormSection("pricing"); updateTotals(); scheduleCanvasRefresh();
+    }
+
+    // Reference show/hide
+    if (t.closest("[data-ref-toggle]")) {
+      if (state.hiddenBlocks.has("reference")) state.hiddenBlocks.delete("reference");
+      else state.hiddenBlocks.add("reference");
+      rerenderFormSection("cover"); scheduleCanvasRefresh();
+    }
+  });
 }
 
 // ── Mount ────────────────────────────────────────────────────
@@ -1100,6 +2201,13 @@ function mount() {
     renderAbout() +
     renderTerms();
   $("#rail").innerHTML = renderRail();
+
+  // Build the form view in its own container
+  mountFormView();
+
+  // Apply initial mode (shows/hides canvas vs formCanvas)
+  setMode(state.mode);
+
   wireAffordances();
   wireAddOns();
   wireLineItems();
@@ -1109,6 +2217,7 @@ function mount() {
   wireBlockHide();
   wireRail();
   wireChrome();
+  wireEstimatePanel();
   wireSendSheet();
   wireTimelineSheet();
   wireScrollSpy();
@@ -1991,7 +3100,12 @@ function resolveField(path) {
 function wireRail() {
   $$(".rail__item").forEach((item) => {
     item.addEventListener("click", () => {
-      const target = document.getElementById(item.dataset.target);
+      // In fields mode, navigate inside the form canvas instead
+      const sectionId = (item.dataset.target || "").replace("section-", "");
+      const targetId = state.mode === "fields"
+        ? `form-section-${sectionId}`
+        : item.dataset.target;
+      const target = document.getElementById(targetId);
       if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
@@ -2044,12 +3158,22 @@ function wireChrome() {
 
 function setMode(mode) {
   state.mode = mode;
+  const canvas     = $("#canvas");
+  const formCanvas = $("#formCanvas");
+
   $("#app").classList.toggle("app--preview", mode === "preview");
+  $("#app").classList.toggle("app--fields", mode === "fields");
+
+  // Show the right editing surface
+  if (canvas)     canvas.hidden     = mode === "fields";
+  if (formCanvas) formCanvas.hidden = mode !== "fields";
+
   $$(".segmented__btn").forEach((b) => {
     const active = b.dataset.mode === mode;
     b.classList.toggle("segmented__btn--active", active);
     b.setAttribute("aria-selected", String(active));
   });
+
   if (mode === "preview") {
     $$(".ai-block[data-editing='true']").forEach((b) => exitEdit(b));
   }
