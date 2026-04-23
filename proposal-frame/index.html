@@ -33,7 +33,8 @@
         </div>
         <div class="chrome__right">
           <div class="segmented" role="tablist" aria-label="View mode">
-            <button class="segmented__btn segmented__btn--active" data-mode="edit" role="tab" aria-selected="true">Edit</button>
+            <button class="segmented__btn segmented__btn--active" data-mode="fields" role="tab" aria-selected="true">Fields</button>
+            <button class="segmented__btn" data-mode="edit" role="tab" aria-selected="false">Edit</button>
             <button class="segmented__btn" data-mode="preview" role="tab" aria-selected="false">Preview</button>
           </div>
           <button class="btn btn--primary" id="sendBtn">
@@ -54,10 +55,35 @@
           <!-- rendered by main.js when opened -->
         </aside>
 
-        <main class="canvas brand-scope" id="canvas">
+        <div class="form-canvas" id="formCanvas">
+          <!-- rendered by main.js in fields mode -->
+        </div>
+
+        <main class="canvas brand-scope" id="canvas" hidden>
           <!-- rendered by main.js -->
         </main>
       </div>
+    </div>
+
+    <!-- Estimate side panel (studio-only, not shown to client) -->
+    <div class="estimate-panel" id="estimatePanel" aria-label="Estimate & timeline" hidden>
+      <div class="estimate-panel__backdrop" id="estimatePanelBackdrop"></div>
+      <aside class="estimate-panel__drawer">
+        <div class="estimate-panel__head">
+          <div class="estimate-panel__head-left">
+            <span class="estimate-panel__eyebrow">Just for you</span>
+            <h2 class="estimate-panel__title">Estimate & timeline</h2>
+          </div>
+          <button class="estimate-panel__close" id="estimatePanelClose" aria-label="Close estimate panel">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="estimate-panel__body" id="estimatePanelBody">
+          <!-- populated by main.js -->
+        </div>
+      </aside>
     </div>
 
     <!-- Send confirm sheet -->
@@ -82,7 +108,7 @@
             </div>
             <div class="sheet__option-body">
               <div class="sheet__option-title">Copy shareable link</div>
-              <div class="sheet__option-sub">fishwife.salter.studio/proposals/lobster-9k2b</div>
+              <div class="sheet__option-sub">fishwife.boilingpot.studio/proposals/lobster-9k2b</div>
             </div>
             <div class="sheet__option-action" id="copyState">Copy</div>
           </button>
@@ -96,7 +122,7 @@
             </div>
             <div class="sheet__option-body">
               <div class="sheet__option-title">Download PDF</div>
-              <div class="sheet__option-sub">Fishwife-Tinned-Lobster (Salter Studio).pdf</div>
+              <div class="sheet__option-sub">Fishwife-Tinned-Lobster (Boiling Pot).pdf</div>
             </div>
             <div class="sheet__option-action">Download</div>
           </button>
