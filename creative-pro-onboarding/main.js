@@ -74,10 +74,10 @@ const RED_FLAG_PROMPTS = [
 ];
 
 const CAREER_STAGES = [
-  { id: "starting", label: "Just starting out", hint: "Building the portfolio and the process." },
-  { id: "few-years", label: "A few years in", hint: "Confident in the work, growing the client list." },
-  { id: "established", label: "Established", hint: "Known in the niche, referrals, repeat clients." },
-  { id: "veteran", label: "Seasoned / industry name", hint: "Trusted by peers — clients come to you." },
+  { id: "starting",    label: "Just starting out", hint: "Building the portfolio and the process." },
+  { id: "few-years",  label: "A few years in",     hint: "Confident in the work, growing the client list." },
+  { id: "established", label: "Established",        hint: "Known in the niche, referrals, repeat clients." },
+  { id: "veteran",    label: "Seasoned",            hint: "Trusted by peers — clients come to you." },
 ];
 
 const COUNTRIES = [
@@ -134,14 +134,6 @@ const FONT_PAIRINGS = [
     desc: "Sans serif headings, sans serif body",
     headingFont: "'DM Sans', sans-serif",
     headingWeight: "500",
-    headingStyle: "normal",
-  },
-  {
-    id: "bold-sans",
-    label: "Bold + Sans",
-    desc: "Bold heading, sans serif body",
-    headingFont: "'DM Sans', sans-serif",
-    headingWeight: "700",
     headingStyle: "normal",
   },
 ];
@@ -229,7 +221,7 @@ const PITCH_TEMPLATES_GENERIC = [
 const PITCH_SLOTS = {
   "graphic-design": {
     niche: [
-      "founder-led food &amp; drink brands",
+      "founder-led food & drink brands",
       "independent labels on shelves",
       "early-stage consumer brands",
       "small studios who care about craft",
@@ -522,11 +514,12 @@ const state = {
   answers: {
     // Brand basics
     workType: "solo",
-    name: "Boiling Pot Studio",
+    name: "",
     role: "",
     country: "AU",
     city: "Melbourne",
     abn: "",
+    wordmarkSrc: "",
     address: "12 Smith St, Collingwood VIC 3066",
     addressClientFacing: false,
     phone: "",
@@ -580,8 +573,8 @@ const state = {
     // Case studies
     caseStudiesOpen: false,
     caseStudies: [
-      { id: "cs1", title: "Brand identity · Perennia", summary: "Took an emerging food brand from scrappy to shelf-ready. Featured in The Strategist the month of launch.", clientWebsite: "https://perennia.com.au", portfolioLink: "https://boilingpot.studio/work/perennia", hidden: false, editOpen: false },
-      { id: "cs2", title: "Packaging relaunch · SS24", summary: "New packaging lifted shelf pick-up by 22% at David Jones Food Hall within six weeks.", clientWebsite: "", portfolioLink: "https://boilingpot.studio/work/ss24", hidden: false, editOpen: false },
+      { id: "cs1", title: "Brand identity · Perennia", summary: "Took an emerging food brand from scrappy to shelf-ready. Featured in The Strategist the month of launch.", clientWebsite: "https://perennia.com.au", portfolioLink: "https://boilingpot.studio/work/perennia", keywords: "branding, new brand", hidden: false, editOpen: false },
+      { id: "cs2", title: "Packaging relaunch · SS24", summary: "New packaging lifted shelf pick-up by 22% at David Jones Food Hall within six weeks.", clientWebsite: "", portfolioLink: "https://boilingpot.studio/work/ss24", keywords: "packaging, branding, ecommerce", hidden: false, editOpen: false },
     ],
     // Offers
     pricing: {
@@ -625,6 +618,14 @@ const root = document.getElementById("onboarding");
 
 function render({ scrollToTop = false } = {}) {
   const prevScroll = window.scrollY;
+
+  // Save focus so we can restore it after the DOM is replaced
+  const active    = document.activeElement;
+  const focusedId = active && active.id || null;
+  const focusedKey = active && active.dataset && active.dataset.key || null;
+  const selStart  = active && active.selectionStart != null ? active.selectionStart : null;
+  const selEnd    = active && active.selectionEnd   != null ? active.selectionEnd   : null;
+
   const html =
     state.step === -1 ? renderIntro() :
     state.step === 0 ? renderStepBrand() :
@@ -634,6 +635,18 @@ function render({ scrollToTop = false } = {}) {
 
   root.innerHTML = html;
   bindEvents();
+
+  // Restore focus + cursor position
+  const toFocus = focusedId  ? document.getElementById(focusedId)
+                : focusedKey ? root.querySelector(`[data-key="${focusedKey}"]`)
+                : null;
+  if (toFocus) {
+    toFocus.focus({ preventScroll: true });
+    if (selStart != null && toFocus.setSelectionRange) {
+      try { toFocus.setSelectionRange(selStart, selEnd); } catch (_) {}
+    }
+  }
+
   if (scrollToTop) {
     window.scrollTo({ top: 0, behavior: "instant" });
   } else {
@@ -736,7 +749,10 @@ function renderStepBrand() {
             ${a.hasHero ? `<div class="preview__hero-hint">${ICON.image}</div>` : ""}
           </div>
           <div class="preview__body">
-            <div class="preview__logo">${a.logoInitial}</div>
+            ${a.wordmarkSrc
+              ? `<img class="preview__wordmark" src="${escapeAttr(a.wordmarkSrc)}" alt="Wordmark" />`
+              : `<div class="preview__logo">${a.logoInitial}</div>`
+            }
             <div class="preview__name">${escapeHtml(nameDisplay)}</div>
             <div class="preview__url">${escapeHtml(urlDisplay)}</div>
           </div>
@@ -753,6 +769,24 @@ function renderStepBrand() {
           `).join("")}
           <button class="swatch-add" id="addSwatch" aria-label="Add colour">${ICON.plus}</button>
         </div>
+
+        <div class="preview__side-label" style="margin-top:1rem">Wordmark</div>
+        <div class="preview__side-hint">PNG or SVG with transparent background</div>
+        <div class="wordmark-upload">
+          ${a.wordmarkSrc
+            ? `<div class="wordmark-upload__preview">
+                 <img src="${escapeAttr(a.wordmarkSrc)}" alt="Wordmark preview" class="wordmark-upload__img" />
+                 <button class="wordmark-upload__remove" id="wordmarkRemove" aria-label="Remove wordmark">
+                   ${ICON.close} Remove
+                 </button>
+               </div>`
+            : `<label class="wordmark-upload__label" id="wordmarkLabel">
+                 ${ICON.upload}
+                 <span>Upload wordmark</span>
+                 <input type="file" accept="image/png,image/svg+xml,image/jpeg" class="sr-only" id="wordmarkInput" />
+               </label>`
+          }
+        </div>
       </div>
 
       <!-- Form column -->
@@ -768,21 +802,6 @@ function renderStepBrand() {
             <input class="input" type="text" data-key="name"
                    placeholder="${a.workType === "solo" ? "e.g. Studio Remi" : "e.g. Field Day Studio"}"
                    value="${escapeAttr(a.name)}" />
-          </div>
-
-          <div class="grid-2">
-            <div class="field">
-              <label class="field__label field__label--required">Country</label>
-              <select class="input" data-key="country">
-                ${COUNTRIES.map(c => `<option value="${c.code}" ${a.country === c.code ? "selected" : ""}>${c.name}</option>`).join("")}
-              </select>
-            </div>
-            <div class="field">
-              <label class="field__label">City</label>
-              <input class="input" type="text" data-key="city"
-                     placeholder="e.g. Melbourne"
-                     value="${escapeAttr(a.city)}" />
-            </div>
           </div>
 
           <div class="grid-2">
@@ -806,14 +825,13 @@ function renderStepBrand() {
                 <span class="field__toggle-label">Hide on proposals</span>
               </label>
             </div>
-          </div>
-
-          <div class="field">
-            <label class="field__label">ABN</label>
-            <input class="input" type="text" data-key="abn"
-                   placeholder="e.g. 12 345 678 901"
-                   value="${escapeAttr(a.abn)}" />
-            <p class="field__help">Added to your invoices. Leave blank if not registered.</p>
+            <div class="field">
+              <label class="field__label">ABN</label>
+              <input class="input" type="text" data-key="abn"
+                     placeholder="e.g. 12 345 678 901"
+                     value="${escapeAttr(a.abn)}" />
+              <p class="field__help">Added to invoices. Leave blank if not registered.</p>
+            </div>
           </div>
 
           <div class="field">
@@ -825,6 +843,21 @@ function renderStepBrand() {
               <input type="checkbox" data-key-bool="addressClientFacing" ${a.addressClientFacing ? "checked" : ""} />
               <span class="field__toggle-label">Hide on proposals</span>
             </label>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label class="field__label">City</label>
+              <input class="input" type="text" data-key="city"
+                     placeholder="e.g. Melbourne"
+                     value="${escapeAttr(a.city)}" />
+            </div>
+            <div class="field">
+              <label class="field__label field__label--required">Country</label>
+              <select class="input" data-key="country">
+                ${COUNTRIES.map(c => `<option value="${c.code}" ${a.country === c.code ? "selected" : ""}>${c.name}</option>`).join("")}
+              </select>
+            </div>
           </div>
         </div>
 
@@ -874,15 +907,17 @@ function renderPricingSection(a) {
 
   return `
     <div class="field">
-      <label class="field__label">How do you charge?</label>
-      <p class="field__help">Select all that apply. We'll get into the specifics at the proposal stage.</p>
+      <label class="field__label">Pricing methods</label>
+      <p class="field__help">Select all that apply. Hit "Go-to" on your default.</p>
       <div class="charge-method-grid">
         ${PRICING_MODELS.map(m => {
           const selected = methods.includes(m.id);
+          const isPrimary = p.primary === m.id && selected;
           return `
             <button type="button"
                     class="charge-method ${selected ? "charge-method--selected" : ""}"
                     data-charge-method="${m.id}">
+              ${selected ? `<button type="button" class="charge-method__goto${isPrimary ? " charge-method__goto--on" : ""}" data-pricing-primary="${m.id}" tabindex="-1">${isPrimary ? "✓ Go-to" : "Go-to"}</button>` : ""}
               <span class="charge-method__label">${m.label}</span>
               <span class="charge-method__unit">${m.unit}</span>
             </button>
@@ -890,28 +925,6 @@ function renderPricingSection(a) {
         }).join("")}
       </div>
     </div>
-
-    ${methods.length > 1 ? `
-      <div class="field">
-        <label class="field__label">Which is your go-to?</label>
-        <p class="field__help">Your default when nothing's been agreed upfront.</p>
-        <div class="pricing-tiles" role="radiogroup">
-          ${methods.map(id => {
-            const model = PRICING_MODELS.find(m => m.id === id);
-            if (!model) return "";
-            return `
-              <button class="pricing-tile ${p.primary === id ? "pricing-tile--selected" : ""}"
-                      data-pricing-primary="${id}"
-                      role="radio"
-                      aria-checked="${p.primary === id}">
-                <span class="pricing-tile__label">${model.label}</span>
-                <span class="pricing-tile__unit">${model.unit}</span>
-              </button>
-            `;
-          }).join("")}
-        </div>
-      </div>
-    ` : ""}
   `;
 }
 
@@ -1326,11 +1339,12 @@ function renderStepWork() {
             <label class="field__label field__label--required">What do you do?</label>
             <p class="field__help">Pulled from your site — add or remove anything.</p>
             <div class="tag-input-wrap">
-              <div class="tag-input">
+              <div class="tag-input tag-input--list">
                 ${a.disciplines.map((r, i) => `
-                  <span class="tag">
-                    ${escapeHtml(r)}
-                    <button class="tag__remove" data-discipline-remove="${i}" aria-label="Remove ${escapeAttr(r)}">${ICON.close}</button>
+                  <span class="tag-list-item">
+                    <span class="tag-list-item__dot"></span>
+                    <span class="tag-list-item__label">${escapeHtml(r)}</span>
+                    <button class="tag-list-item__remove" data-discipline-remove="${i}" aria-label="Remove ${escapeAttr(r)}">${ICON.close}</button>
                   </span>
                 `).join("")}
                 <input class="tag-input__field" id="disciplineInput" type="text"
@@ -1353,14 +1367,15 @@ function renderStepWork() {
             </div>
           </div>
 
-          <!-- Skillsets (what you can do) -->
+          <!-- Skillsets -->
+          <div class="grid-2 grid-2--aligned">
           <div class="field">
-            <label class="field__label">Skillsets <span class="field__label-hint">what you can do</span></label>
-            <p class="field__help">All the things you're across. Add as many as apply.</p>
+            <label class="field__label">Primary skillsets</label>
+            <p class="field__help">Your core offering. What do most clients hire you for? Keep it to 1–3 things.</p>
             <div class="tag-input-wrap">
-              <div class="tag-input">
+              <div class="tag-input" data-droptarget="specialties">
                 ${a.specialties.map((s, i) => `
-                  <span class="tag">
+                  <span class="tag" draggable="true" data-drag-from="specialties" data-drag-index="${i}">
                     ${escapeHtml(s)}
                     <button class="tag__remove" data-specialty-remove="${i}" aria-label="Remove ${escapeAttr(s)}">${ICON.close}</button>
                   </span>
@@ -1394,27 +1409,16 @@ function renderStepWork() {
                 `;
               })()}
             </div>
-            ${(() => {
-              if (a.specialtyDraft.trim()) return "";
-              const disc = DISCIPLINES.find(d => d.id === disciplineFromRoles(a.disciplines));
-              if (!disc) return "";
-              const remaining = disc.specialties.filter(s => !a.specialties.includes(s)).slice(0, 8);
-              return remaining.length ? `
-                <div class="chip-row">
-                  ${remaining.map(s => `<button class="chip" data-chip-specialty="${escapeAttr(s)}">+ ${s}</button>`).join("")}
-                </div>
-              ` : "";
-            })()}
           </div>
 
-          <!-- Primary services -->
+          <!-- Secondary skillsets -->
           <div class="field">
-            <label class="field__label">Primary services</label>
-            <p class="field__help">Your core offering. What do most clients hire you for? Keep it to 1–3 things.</p>
+            <label class="field__label">Secondary skillsets</label>
+            <p class="field__help">What you can do. Add as many as apply.</p>
             <div class="tag-input-wrap">
-              <div class="tag-input">
+              <div class="tag-input" data-droptarget="primaryServices">
                 ${a.primaryServices.map((s, i) => `
-                  <span class="tag">
+                  <span class="tag" draggable="true" data-drag-from="primaryServices" data-drag-index="${i}">
                     ${escapeHtml(s)}
                     <button class="tag__remove" data-primary-service-remove="${i}" aria-label="Remove ${escapeAttr(s)}">${ICON.close}</button>
                   </span>
@@ -1449,9 +1453,22 @@ function renderStepWork() {
               })()}
             </div>
           </div>
+          </div><!-- /.grid-2 skillsets -->
+
+          ${(() => {
+            if (a.specialtyDraft.trim()) return "";
+            const disc = DISCIPLINES.find(d => d.id === disciplineFromRoles(a.disciplines));
+            if (!disc) return "";
+            const remaining = disc.specialties.filter(s => !a.specialties.includes(s)).slice(0, 8);
+            return remaining.length ? `
+              <div class="chip-row chip-row--inline">
+                ${remaining.map(s => `<button class="chip" data-chip-specialty="${escapeAttr(s)}">+ ${s}</button>`).join("")}
+              </div>
+            ` : "";
+          })()}
 
           <!-- Elevator pitch -->
-          <div class="field">
+          <div class="field" style="margin-top:1.75rem">
             <div class="field__label-row">
               <label class="field__label field__label--required">Elevator pitch</label>
               <button type="button" class="ai-assist" data-toggle-pitchhelp="${a.pitchHelpOpen ? "close" : "open"}">
@@ -1512,22 +1529,24 @@ function renderStepWork() {
           <div class="field">
             <label class="field__label">Where are you in your career?</label>
             <p class="field__help">For your bio, not a gatekeeping question. Helps us write about you in the right voice.</p>
-            <div class="career-stages">
-              ${CAREER_STAGES.map(s => `
-                <button type="button" class="career-stage ${a.careerStage === s.id ? "career-stage--selected" : ""}" data-career-stage="${s.id}">
-                  <div class="career-stage__label">${s.label}</div>
-                  <div class="career-stage__hint">${s.hint}</div>
-                </button>
-              `).join("")}
-            </div>
-            <div class="career-years">
-              <label class="career-years__label">How long have you been doing it?</label>
-              <div class="career-years__input-wrap">
-                <input class="input career-years__input" type="number" min="1" max="50"
-                       data-key="yearsExperience"
-                       placeholder="e.g. 8"
-                       value="${escapeAttr(a.yearsExperience)}" />
-                <span class="career-years__unit">years</span>
+            <div class="career-stage-row">
+              <div class="career-years">
+                <label class="career-years__label">Years exp.</label>
+                <div class="career-years__input-wrap">
+                  <input class="input career-years__input" type="number" min="1" max="50"
+                         data-key="yearsExperience"
+                         placeholder="e.g. 8"
+                         value="${escapeAttr(a.yearsExperience)}" />
+                  <span class="career-years__unit">yrs</span>
+                </div>
+              </div>
+              <div class="career-stages">
+                ${CAREER_STAGES.map(s => `
+                  <button type="button" class="career-stage ${a.careerStage === s.id ? "career-stage--selected" : ""}" data-career-stage="${s.id}">
+                    <div class="career-stage__label">${s.label}</div>
+                    <div class="career-stage__hint">${s.hint}</div>
+                  </button>
+                `).join("")}
               </div>
             </div>
           </div>
@@ -1653,6 +1672,7 @@ function renderStepStyle() {
                 ${CURRENCIES.map(c => `<option value="${c}" ${a.currency === c ? "selected" : ""}>${c}</option>`).join("")}
               </select>
             </div>
+
             <div class="field" style="margin-bottom:0">
               <label class="field__label field__label--with-info">
                 Registered for ${escapeHtml(a.taxName)}?
@@ -1695,56 +1715,6 @@ function renderStepStyle() {
               ${renderFileList(a.contractFiles, "contract")}
             </div>
           </div>
-        </div>
-
-        <!-- Gut check: opt-in add-on -->
-        <div class="section">
-          ${a.gutCheckOpen ? `
-            <div class="section__head-row">
-              <div>
-                <h2 class="section__title">Gut check</h2>
-                <p class="section__helper">Helps us flag bad-fit briefs on calls and nudge you toward work you love.</p>
-              </div>
-              <button class="btn-link btn-link--muted" data-toggle-gutcheck="close">Skip this</button>
-            </div>
-
-            <div class="field">
-              <label class="field__label">Your ideal project</label>
-              <textarea class="input" data-key="idealProject" rows="2"
-                        placeholder="e.g. A full rebrand for a founder who trusts the process.">${escapeHtml(a.idealProject)}</textarea>
-            </div>
-
-            <div class="grid-2">
-              <div class="field">
-                <label class="field__label">Want more of</label>
-                <textarea class="input" data-key="wantMore" rows="3"
-                          placeholder="e.g. Editorial projects, long-term partnerships, print work.">${escapeHtml(a.wantMore)}</textarea>
-              </div>
-              <div class="field">
-                <label class="field__label">Want less of</label>
-                <textarea class="input" data-key="wantLess" rows="3"
-                          placeholder="e.g. One-off social posts, crypto, last-minute deadlines.">${escapeHtml(a.wantLess)}</textarea>
-              </div>
-            </div>
-
-            <div class="field">
-              <label class="field__label">Red flags</label>
-              <div class="pill-group" data-pill-group="redFlags">
-                ${RED_FLAG_PROMPTS.map(r => `
-                  <button class="pill ${a.redFlags.includes(r) ? "pill--selected" : ""}" data-pill="${escapeAttr(r)}">${r}</button>
-                `).join("")}
-              </div>
-              <p class="field__help">We'll surface these as live nudges during discovery calls.</p>
-            </div>
-          ` : `
-            <div class="addon-prompt">
-              <div class="addon-prompt__body">
-                <div class="addon-prompt__title">Add a gut check?</div>
-                <div class="addon-prompt__hint">So we can flag bad-fit briefs on calls and nudge you toward work you love.</div>
-              </div>
-              <button class="btn btn--ghost" data-toggle-gutcheck="open">+ Add gut check</button>
-            </div>
-          `}
         </div>
 
         ${renderNav(true)}
@@ -1810,6 +1780,12 @@ function renderCaseStudies(a) {
                     <textarea class="input" rows="2" data-cs-field="${i}" data-cs-key="summary"
                               placeholder="What was the project and what was the outcome?">${escapeHtml(c.summary)}</textarea>
                   </div>
+                  <div class="cs-edit__field">
+                    <label class="field__label">Keywords</label>
+                    <input class="input" type="text" data-cs-field="${i}" data-cs-key="keywords"
+                           value="${escapeAttr(c.keywords || "")}" placeholder="e.g. packaging, branding, ecommerce" />
+                    <span class="field__help">Comma-separated — used to match this study to relevant proposals.</span>
+                  </div>
                   <div class="cs-edit__row">
                     <div class="cs-edit__field">
                       <label class="field__label">Client website</label>
@@ -1831,6 +1807,11 @@ function renderCaseStudies(a) {
                 <div class="case-study-row__body">
                   <div class="case-study-row__title">${escapeHtml(c.title)}</div>
                   ${c.summary ? `<div class="case-study-row__summary">${escapeHtml(c.summary)}</div>` : ""}
+                  ${c.keywords ? `
+                    <div class="case-study-row__keywords">
+                      ${c.keywords.split(",").map(k => k.trim()).filter(Boolean).map(k => `<span class="cs-keyword">${escapeHtml(k)}</span>`).join("")}
+                    </div>
+                  ` : ""}
                   ${(c.clientWebsite || c.portfolioLink) ? `
                     <div class="case-study-row__links">
                       ${c.clientWebsite ? `<a class="case-study-row__link" href="${escapeAttr(c.clientWebsite)}" target="_blank" rel="noopener">${ICON.link} Client site</a>` : ""}
@@ -2242,14 +2223,13 @@ function bindEvents() {
     });
   });
 
-  // Pricing: pick primary model (radio tiles)
+  // Pricing: pick primary model (go-to pill inside tile)
   root.querySelectorAll("[data-pricing-primary]").forEach((btn) => {
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation(); // don't trigger the parent tile toggle
       const id = btn.dataset.pricingPrimary;
-      if (state.answers.pricing.primary !== id) {
-        state.answers.pricing.primary = id;
-        render();
-      }
+      state.answers.pricing.primary = state.answers.pricing.primary === id ? "" : id;
+      render();
     });
   });
 
@@ -2549,6 +2529,44 @@ function bindEvents() {
     });
   });
 
+  // Drag-to-transfer between specialties ↔ primaryServices
+  root.querySelectorAll("[data-drag-from]").forEach((tag) => {
+    tag.addEventListener("dragstart", (e) => {
+      const from  = tag.dataset.dragFrom;
+      const index = Number(tag.dataset.dragIndex);
+      const value = state.answers[from][index];
+      e.dataTransfer.effectAllowed = "move";
+      e.dataTransfer.setData("text/plain", JSON.stringify({ from, index, value }));
+      tag.classList.add("tag--dragging");
+    });
+    tag.addEventListener("dragend", () => tag.classList.remove("tag--dragging"));
+  });
+
+  root.querySelectorAll("[data-droptarget]").forEach((zone) => {
+    zone.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = "move";
+      zone.classList.add("tag-input--drag-over");
+    });
+    zone.addEventListener("dragleave", (e) => {
+      if (!zone.contains(e.relatedTarget)) zone.classList.remove("tag-input--drag-over");
+    });
+    zone.addEventListener("drop", (e) => {
+      e.preventDefault();
+      zone.classList.remove("tag-input--drag-over");
+      let payload;
+      try { payload = JSON.parse(e.dataTransfer.getData("text/plain")); } catch { return; }
+      const { from, index, value } = payload;
+      const to = zone.dataset.droptarget;
+      if (from === to) return;
+      // Remove from source, add to destination (if not already present)
+      state.answers[from].splice(index, 1);
+      const dest = state.answers[to];
+      if (!dest.some(s => s.toLowerCase() === value.toLowerCase())) dest.push(value);
+      render();
+    });
+  });
+
   // Secondary services: tag input
   const addSecondaryService = (raw) => {
     const v = formatSpecialty(raw);
@@ -2652,7 +2670,30 @@ function bindEvents() {
     addCaseStudy.addEventListener("click", () => {
       const title = prompt("Case study title (e.g. Brand identity · Studio Name)");
       if (!title) return;
-      state.answers.caseStudies.push({ id: "cs" + Date.now(), title, summary: "", clientWebsite: "", portfolioLink: "", hidden: false, editOpen: true });
+      state.answers.caseStudies.push({ id: "cs" + Date.now(), title, summary: "", clientWebsite: "", portfolioLink: "", keywords: "", hidden: false, editOpen: true });
+      render();
+    });
+  }
+
+  // Wordmark upload
+  const wordmarkInput = document.getElementById("wordmarkInput");
+  if (wordmarkInput) {
+    wordmarkInput.addEventListener("change", () => {
+      const file = wordmarkInput.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        state.answers.wordmarkSrc = e.target.result;
+        render();
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  const wordmarkRemove = document.getElementById("wordmarkRemove");
+  if (wordmarkRemove) {
+    wordmarkRemove.addEventListener("click", () => {
+      state.answers.wordmarkSrc = "";
       render();
     });
   }
